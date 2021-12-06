@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: postgres:14.1
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: spinakr_backoffice
+      POSTGRES_PASSWORD: spinakr_backoffice
+      POSTGRES_DB: spinakr_backoffice
+    command: ["postgres", "-c", "log_statement=all"]
