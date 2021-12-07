@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
+require('./../config/passport');
 
 const authRouter = require('./authRouter')
 const usersRouter = require('./usersRouter')
+const booksRouter = require('./booksRouter')
 
 /* GET index page. */
 router.get('/', function(req, res, next) {
@@ -15,6 +17,7 @@ router.get('/', function(req, res, next) {
 
 router.use(authRouter)
 router.use(usersRouter)
+router.use(booksRouter)
 
 module.exports = router;
 
