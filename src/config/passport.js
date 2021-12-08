@@ -35,11 +35,11 @@ passport.use(
       secretOrKey: process.env.JWT_SECRET,
       jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken()
     },
-    (token, done) => {
+    (jwtPayload, done) => {
       try {
-        return done(null, token.user);
+        return done(null, jwtPayload.user);
       } catch (error) {
-        done(error);
+        return done(error);
       }
     }
   )

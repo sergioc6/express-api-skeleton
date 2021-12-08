@@ -14,7 +14,7 @@ exports.login = (req, res, next) => {
                     async (error) => {
                         if (error) return next(error);
 
-                        const token = jwt.sign({user}, process.env.JWT_SECRET);
+                        const token = jwt.sign({user}, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES_IN});
                         return res.json({token});
                     }
                 )
@@ -25,6 +25,11 @@ exports.login = (req, res, next) => {
     )(req, res, next)
 }
 
-exports.logout = (req, res) => {
+exports.me = (req, res) => {
+    res.json(req.user);
+}
+
+exports.renovateToken = (req, res) => {
+    req.logout();
     res.send('TODO: logout')
 }
